@@ -12,4 +12,4 @@ AI-assisted tools were used during manuscript preparation.
 
 - [First release: v1.0.0-preprint](https://github.com/FDmd233/litt-problem-13-f4/releases/tag/v1.0.0-preprint)
 
-The annotated Git tag, release timestamp, PDF checksum, and complete commit history are retained as the publication record. The history should not be rewritten.
+The annotated Git tag, release timestamp, and PDF checksum provide a reproducible publication record.
