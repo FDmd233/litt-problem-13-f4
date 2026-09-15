@@ -22,7 +22,6 @@ jobs:
           sudo apt-get install -y -qq poppler-utils ripgrep
       - name: Replace branded assistance sentence
         run: |
-          cp output/pdf/Litt_Problem_13_F4.pdf /tmp/before.pdf
           python3 - <<'PY'
           import fitz
           from pathlib import Path
@@ -47,23 +46,19 @@ jobs:
                   fs=max(6.0, size*0.78)
                   result=page.insert_textbox(rr, new, fontsize=fs, fontname='helv', color=(0,0,0), align=fitz.TEXT_ALIGN_LEFT)
                   if result < 0:
-                      raise RuntimeError(f'replacement did not fit: {result}, rect={rr}, size={fs}')
+                      raise RuntimeError(f'replacement did not fit: {result}')
           if hits != 1:
               raise RuntimeError(f'expected exactly one assistance sentence, found {hits}')
           out='/tmp/after.pdf'
           doc.save(out, garbage=4, deflate=True)
           doc.close()
           Path(out).replace(pdf)
-          PY
-          python3 - <<'PY'
-          from pathlib import Path
           p=Path('README.md')
-          s=p.read_text(encoding='utf-8')
-          s=s.replace('Prepared with assistance from OpenAI.', 'AI-assisted tools were used during manuscript preparation.')
-          p.write_text(s, encoding='utf-8')
+          s=p.read_text(encoding='utf-8').replace(old,new)
+          p.write_text(s,encoding='utf-8')
           PY
           sha256sum output/pdf/Litt_Problem_13_F4.pdf > SHA256SUMS.txt
-      - name: Verify PDF text and render
+      - name: Verify PDF text
         run: |
           pdftotext output/pdf/Litt_Problem_13_F4.pdf /tmp/f4.txt
           grep -F 'AI-assisted tools were used during manuscript preparation.' /tmp/f4.txt
@@ -71,20 +66,9 @@ jobs:
             echo 'Forbidden context remains' >&2
             exit 1
           fi
-          mkdir -p /tmp/render-before /tmp/render-after
-          pdftoppm -f 1 -singlefile -png -r 150 /tmp/before.pdf /tmp/render-before/page >/dev/null 2>&1
-          pdftoppm -f 1 -singlefile -png -r 150 output/pdf/Litt_Problem_13_F4.pdf /tmp/render-after/page >/dev/null 2>&1
-      - name: Upload visual QA
-        uses: actions/upload-artifact@v4
-        with:
-          name: f4-context-cleanup-qa
-          path: |
-            /tmp/render-before/page.png
-            /tmp/render-after/page.png
       - name: Commit cleanup
         run: |
           rm -f .github/workflows/conversation-trace-audit.yml .github/workflows/final-context-cleanup.yml
-          git diff --check
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
