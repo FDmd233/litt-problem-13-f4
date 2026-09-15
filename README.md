@@ -6,7 +6,7 @@ I construct a complex abelian fourfold and an integral surface whose full convol
 
 - [PDF](output/pdf/Litt_Problem_13_F4.pdf)
 
-Prepared with assistance from OpenAI.
+AI-assisted tools were used during manuscript preparation.
 
 ## Publication record
 
