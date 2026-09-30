@@ -1,0 +1,42 @@
+name: Publish v2.0.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-v2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.event.head_commit.message == 'Publish v2.0.0 release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify release artifacts
+        run: sha256sum -c SHA256SUMS.txt
+
+      - name: Publish v2.0.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          Revised manuscript, September 30, 2026.
+
+          This release records the current public manuscript while retaining the earlier v1.0.0-preprint release unchanged.
+
+          Main changes:
+          - strengthens the construction to every smooth cubic threefold with a marked Eckardt point;
+          - identifies the full convolution Tannaka pair as (F4, V26);
+          - proves the birational quotient geometry and the decomposition Rf_* C_F[2] = IC_X + delta_0;
+          - gives a seven-dimensional family of polarized abelian fourfolds of type (1,2,2,2);
+          - computes CC(IC_X) = Lambda_X + 2 Lambda_0 and conormal Gauss degree 24;
+          - computes generic twisted Hodge multiplicities (6,14,6);
+          - includes the compiled PDF, complete LaTeX source, and SHA-256 checksums.
+
+          The manuscript is signed OpenAI. OpenAI GPT-5.6 Sol was used during parts of the earlier drafting and checking process. OpenAI ChatGPT/Codex was used for the September 30 revision, examination of the arguments and references, and LaTeX checks. This statement records assistance and does not imply journal review or acceptance.
+          EOF
+          gh release create v2.0.0             output/pdf/Litt_Problem_13_F4.pdf             Litt_Problem_13_F4.tex             SHA256SUMS.txt             --target "$GITHUB_SHA"             --title "A Realization of F4 for Litt Problem No. 13 - v2.0.0"             --notes-file /tmp/release-notes.md
