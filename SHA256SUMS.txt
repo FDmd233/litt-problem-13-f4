@@ -1,1 +1,2 @@
-204aa10eb914883b72eab74b2f86ddef5516af578f3fd8a473086479255d539a  output/pdf/Litt_Problem_13_F4.pdf
+af8d8eaa59cd4f02a9b656187ceacdad1f4cc6cd310bc21de11fea8bbbf93b6a  output/pdf/Litt_Problem_13_F4.pdf
+5bb544884cd010662f37023197cf3c39139bea9b8ef2de00ff8e99d937276b5e  Litt_Problem_13_F4.tex
