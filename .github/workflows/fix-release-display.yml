@@ -1,0 +1,44 @@
+name: Fix v2 release display
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fix-release-display.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  edit-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          Revised manuscript, September 30, 2026.
+
+          This release records the current public manuscript while retaining the earlier v1.0.0-preprint release unchanged.
+
+          Main changes:
+
+          - strengthens the construction to every smooth cubic threefold with a marked Eckardt point;
+          - identifies the full convolution Tannaka pair as (F₄, V₂₆);
+          - proves the birational quotient geometry and the decomposition
+
+            Rf_* C_F[2] ≅ IC_X ⊕ δ₀;
+
+          - gives a seven-dimensional family of polarized abelian fourfolds of type (1,2,2,2);
+          - computes
+
+            CC(IC_X) = Λ_X + 2Λ₀,
+            deg(Λ_X → T₀*B) = 24;
+
+          - computes generic twisted Hodge multiplicities (6,14,6);
+          - includes the compiled PDF, complete LaTeX source, and SHA-256 checksums.
+
+          The manuscript is signed OpenAI. OpenAI GPT-5.6 Sol was used during parts of the earlier drafting and checking process. OpenAI ChatGPT/Codex was used for the September 30 revision, examination of the arguments and references, and LaTeX checks. This statement records assistance and does not imply journal review or acceptance.
+          EOF
+          gh release edit v2.0.0             --repo FDmd233/litt-problem-13-f4             --notes-file /tmp/release-notes.md
