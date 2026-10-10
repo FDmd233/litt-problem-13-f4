@@ -11,6 +11,12 @@ Manuscript revised September 30, 2026.
 - [PDF](output/pdf/Litt_Problem_13_F4.pdf)
 - [Complete LaTeX source](Litt_Problem_13_F4.tex)
 
+## Independent proof checks
+
+The [exact Albert Hessian audit](verification/verify_albert_hessian.py) verifies, independently of the manuscript's quoted ranks, that the norm-cubic Hessians at the diagonal Albert rank-one and rank-two representatives have ranks 10 and 18 (kernel dimensions 17 and 9). It uses the fact that the octonionic trilinear term has zero Hessian at diagonal points, so a nondegenerate 8-dimensional quadratic model suffices. The [GitHub Actions check](.github/workflows/verify-albert-hessian.yml) reproduces these exact ranks.
+
+This validates one key algebraic lemma, **not** the Fano geometry, the full Tannakian reduction, or the external classification of irreducible subgroups of F4.
+
 ## Build
 
 ~~~bash
