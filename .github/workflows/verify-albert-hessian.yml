@@ -22,3 +22,10 @@ jobs:
         run: python -m pip install 'sympy==1.14.0'
       - name: Exact Albert rank-one and rank-two Hessian check
         run: python verification/verify_albert_hessian.py
+      - name: Retain published PDF for independent page review
+        uses: actions/upload-artifact@v4
+        with:
+          name: f4-paper-pdf-${{ github.sha }}
+          path: output/pdf/Litt_Problem_13_F4.pdf
+          if-no-files-found: error
+          retention-days: 14
