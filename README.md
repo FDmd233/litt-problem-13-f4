@@ -34,3 +34,13 @@ The annotated tag, release timestamp, PDF checksum, and commit history are retai
 ## Authorship and assistance
 
 The manuscript is signed OpenAI. OpenAI GPT-5.6 Sol was used during parts of the earlier drafting and checking process. OpenAI ChatGPT/Codex was used for the present revision, examination of the arguments and references, and LaTeX checks. This statement records assistance and does not imply journal review or acceptance.
+
+
+## 2026-10-21 proof correction and verification status
+
+The authoritative `Litt_Problem_13_F4.tex` now contains a restricted
+quotient-pushforward tensor lemma, replacing the previous overbroad claim.
+This is a targeted mathematical correction; a complete independent
+certification of all imported results and every proof step remains pending.
+The tracked PDF and `SHA256SUMS.txt` may predate the corrected source;
+rebuild with `make` and recommit before treating the PDF as current.
