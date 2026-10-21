@@ -27,9 +27,11 @@ This writes the PDF to `output/pdf/Litt_Problem_13_F4.pdf` and the PDF and TeX c
 
 ## Publication record
 
-- [First release: `v1.0.0-preprint`](https://github.com/FDmd233/litt-problem-13-f4/releases/tag/v1.0.0-preprint)
+- [Current corrected release: v2.1.0](https://github.com/FDmd233/litt-problem-13-f4/releases/tag/v2.1.0) — snapshot PDF, complete LaTeX source, and portable SHA-256 checksums.
+- [Previous release: v2.0.0](https://github.com/FDmd233/litt-problem-13-f4/releases/tag/v2.0.0).
+- [First release: v1.0.0-preprint](https://github.com/FDmd233/litt-problem-13-f4/releases/tag/v1.0.0-preprint).
 
-The annotated tag, release timestamp, PDF checksum, and commit history are retained as the public version record.
+The `main`-branch PDF is continuously updated; release tags remain fixed snapshots for version tracking.
 
 ## Authorship and assistance
 
