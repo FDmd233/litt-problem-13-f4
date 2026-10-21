@@ -4,14 +4,14 @@ This repository contains a construction of a complex abelian fourfold and an int
 
 The construction applies to every smooth cubic threefold with a marked Eckardt point. It quotients the Albanese variety of its Fano surface by the elliptic curve of lines through that point. The quotient surface has characteristic cycle $\Lambda_X+2\Lambda_0$, conormal Gauss degree $24$, and generic twisted Hodge multiplicities $(6,14,6)$. The ambient fourfolds form a seven-dimensional polarized family of type $(1,2,2,2)$.
 
-Manuscript revised September 30, 2026.
+Authoritative source revised October 21, 2026. The corrected PDF and SHA-256 checksums were rebuilt from that source in GitHub Actions.
 
 ## Manuscript
 
 - [PDF](output/pdf/Litt_Problem_13_F4.pdf)
 - [Complete LaTeX source](Litt_Problem_13_F4.tex)
 
-## Independent proof checks
+## Computational verification
 
 The [exact Albert Hessian audit](verification/verify_albert_hessian.py) verifies, independently of the manuscript's quoted ranks, that the norm-cubic Hessians at the diagonal Albert rank-one and rank-two representatives have ranks 10 and 18 (kernel dimensions 17 and 9). It uses the fact that the octonionic trilinear term has zero Hessian at diagonal points, so a nondegenerate 8-dimensional quadratic model suffices. The [GitHub Actions check](.github/workflows/verify-albert-hessian.yml) reproduces these exact ranks.
 
@@ -36,11 +36,13 @@ The annotated tag, release timestamp, PDF checksum, and commit history are retai
 The manuscript is signed OpenAI. OpenAI GPT-5.6 Sol was used during parts of the earlier drafting and checking process. OpenAI ChatGPT/Codex was used for the present revision, examination of the arguments and references, and LaTeX checks. This statement records assistance and does not imply journal review or acceptance.
 
 
-## 2026-10-21 proof correction and verification status
+## Proof correction and verification scope
 
-The authoritative `Litt_Problem_13_F4.tex` now contains a restricted
-quotient-pushforward tensor lemma, replacing the previous overbroad claim.
-This is a targeted mathematical correction; a complete independent
-certification of all imported results and every proof step remains pending.
-The tracked PDF and `SHA256SUMS.txt` may predate the corrected source;
-rebuild with `make` and recommit before treating the PDF as current.
+The revised proof states and proves a restricted tensor pushforward lemma
+for the semismall quotient construction. The previously overbroad functor
+claim is no longer used. The committed PDF is rebuilt from the corrected
+TeX source by [the build workflow](.github/workflows/build-audited-pdf.yml),
+which checks compilation, references, manuscript hygiene, and checksums.
+
+These checks support reproducibility. They are not a substitute for
+independent mathematical peer review of the full proof.
